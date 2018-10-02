@@ -22,11 +22,11 @@ Neste projeto conterá exemplos e explicações de:
  - [Defaults do Sequelize](#defaults-do-sequelize)
  - [Configurações (básicas)](#configs-basicas)
  - [Pasta Configs](./ORM/config/README.md)
- - Models
+ - [Pasta Models](./ORM/models/README.md)
+ - [Validators](./ORM/models/README.md#validators)
+ - Associations
  - Migrations
  - Seeders
- - Validators
-- Associations
 
 Tudo apenas para entendimento da ferramenta **ORM**, para ver os detalhes mais específicos, **consulte a documentação**.
 
@@ -38,6 +38,7 @@ Começaremos instalando as dependências, utilizarei o **YARN** ao invés do NPM
     yarn add sequelize 
     yarn add pg pg-hstore
     yarn add dotenv
+    yarn add sha256
     yarn add sequelize-cli --dev
 Umas das vantagem do YARN é a fácil utilização de dependências de desenvolvimento sem a necessidade de apontar para o arquivo que utilizará (como é feito no NPM).
 
