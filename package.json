@@ -1,0 +1,36 @@
+{
+  "name": "sequelize-treinamento",
+  "version": "1.0.0",
+  "description": "Este é um projeto para fins de aprendizagem do SEQUELIZE, utilizando o NODEJS e EXPRESS.",
+  "dependencies": {
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "ejs": "~2.5.7",
+    "express": "~4.16.0",
+    "http-errors": "~1.6.2",
+    "morgan": "~1.9.0",
+    "pg": "^7.4.3",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.39.0"
+  },
+  "scripts": {
+    "start": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/max10rogerio/sequelize-treinamento.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/max10rogerio/sequelize-treinamento/issues"
+  },
+  "homepage": "https://github.com/max10rogerio/sequelize-treinamento#readme",
+  "devDependencies": {
+    "nodemon": "^1.18.4",
+    "sequelize-auto-migrations": "https://github.com/max10rogerio/sequelize-auto-migrations/archive/master.tar.gz",
+    "sequelize-cli": "^4.1.1"
+  }
+}
