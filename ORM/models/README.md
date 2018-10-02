@@ -93,3 +93,6 @@ email: {
 Lembrando que pode ser utilizados vários validators em um único campo.
 
 Para consultar a documentação [**CLIQUE AQUI**](http://docs.sequelizejs.com/manual/tutorial/models-definition.html#validations)
+
+
+### Associations

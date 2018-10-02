@@ -1,0 +1,167 @@
+{
+    "tables": {
+        "Aluno": {
+            "tableName": "Aluno",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "nome": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING"
+                },
+                "dtNascimento": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATEONLY"
+                },
+                "email": {
+                    "allowNull": false,
+                    "validate": {
+                        "isEmail": true
+                    },
+                    "seqType": "Sequelize.STRING"
+                },
+                "senha": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING"
+                },
+                "ativo": {
+                    "allowNull": false,
+                    "defaultValue": {
+                        "value": true
+                    },
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "cep": {
+                    "allowNull": true,
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "logradouro": {
+                    "allowNull": true,
+                    "seqType": "Sequelize.STRING"
+                },
+                "bairro": {
+                    "allowNull": true,
+                    "seqType": "Sequelize.STRING"
+                },
+                "cidade": {
+                    "allowNull": true,
+                    "seqType": "Sequelize.STRING"
+                },
+                "uf": {
+                    "allowNull": true,
+                    "seqType": "Sequelize.CHAR(2)"
+                },
+                "complemento": {
+                    "allowNull": true,
+                    "seqType": "Sequelize.STRING"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "ResponsavelId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Responsavel",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
+                }
+            },
+            "indexes": []
+        },
+        "Curso": {
+            "tableName": "Curso",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "nome": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "Materia": {
+            "tableName": "Materia",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "nome": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING"
+                },
+                "agrupada": {
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "Responsavel": {
+            "tableName": "Responsavel",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "nome": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING"
+                },
+                "trabalho": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        }
+    },
+    "revision": 2
+}

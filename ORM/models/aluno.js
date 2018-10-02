@@ -1,3 +1,5 @@
+const sha256 = require('sha256')
+
 module.exports = (sequelize, DataTypes) => {
   var Aluno = sequelize.define('Aluno', {
     nome: {
@@ -50,9 +52,20 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: true
     }
-  }, {})
+  }, {
+    hooks: {
+      beforeValidate: (aluno, options) => {
+        console.log('LOG of options variable hook')
+        console.log(options)
+
+        aluno.senha = sha256(aluno.senha)
+      }
+    },
+    freezeTableName: true
+  })
 
   Aluno.associate = function (models) {
+    models.Aluno.belongsTo(models.Responsavel)
   }
 
   return Aluno

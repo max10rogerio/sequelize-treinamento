@@ -24,7 +24,7 @@ Neste projeto conterá exemplos e explicações de:
  - [Pasta Configs](./ORM/config/README.md)
  - [Pasta Models](./ORM/models/README.md)
  - [Validators](./ORM/models/README.md#validators)
- - Associations
+ - [Associations](./ORM/models/README.md#associations)
  - Migrations
  - Seeders
 
@@ -91,3 +91,18 @@ module.exports = {
 }
 ```
 Lembre-se de renomear o arquivo config.json para config.js
+Também altere o começo do arquivo para:
+```
+'use strict'
+
+require('dotenv').config() // require environment (.env file)
+
+const fs = require('fs')
+const path = require('path')
+const Sequelize = require('sequelize')
+const basename = path.basename(__filename)
+const env = process.env.NODE_ENV || 'development'
+const config = require(path.join(__dirname, '/../config/config.js'))[env] // esta linha tbm foi alterada
+const db = {}
+
+```
