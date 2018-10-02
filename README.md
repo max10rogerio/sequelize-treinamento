@@ -1,7 +1,7 @@
 # sequelize-treinamento
 Este é um projeto para fins de aprendizagem do SEQUELIZE, utilizando o NODEJS e EXPRESS.
 Como banco de dados utilizei o PostgreSQL
-[**Clique Aqui**](http://docs.sequelizejs.com) para acessar a documentação oficial do sequelize.
+[**Clique Aqui**](http://docs.sequelizejs.com) para acessar a documentação oficial do sequelize.  
 **[Clique Aqui](http://docs.sequelizejs.com/class/lib/model.js~Model.html)** para acessar uma documentação mais detalhada.
 
 Irei fazer uma estrutura de um simples sistema acadêmico, onde teremos o cadastro de:
@@ -10,7 +10,7 @@ Irei fazer uma estrutura de um simples sistema acadêmico, onde teremos o cadast
  - matéria
  - turma
  - matricula.
-Sendo matrícula uma tabela com **FK's** de turma e aluno e outros atributos.
+Sendo matrícula uma tabela com **FK's** de turma e aluno e outros atributos.  
 E uma tabela ternária **N:M** para relacionar a turma com matéria.
 
 ## Roteiro
