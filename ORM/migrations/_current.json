@@ -134,6 +134,54 @@
             },
             "indexes": []
         },
+        "Matricula": {
+            "tableName": "Matricula",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "status": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.ENUM('MATRICULADO', 'TRANCADO', 'DESISTENTE', 'TRANSFERIDO')"
+                },
+                "observacao": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "AlunoId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Aluno",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "TurmaId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Turma",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
+                }
+            },
+            "indexes": []
+        },
         "Responsavel": {
             "tableName": "Responsavel",
             "schema": {
@@ -161,7 +209,88 @@
                 }
             },
             "indexes": []
+        },
+        "Turma": {
+            "tableName": "Turma",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "nome": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.STRING"
+                },
+                "qtdeMaximaAlunos": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "emailCoordenador": {
+                    "allowNull": true,
+                    "validate": {
+                        "isEmail": {
+                            "msg": "Por gentileza, insira um e-mail válido para o coordenador."
+                        }
+                    },
+                    "seqType": "Sequelize.STRING"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "CursoId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Curso",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
+                }
+            },
+            "indexes": []
+        },
+        "TurmaMateria": {
+            "tableName": "TurmaMateria",
+            "schema": {
+                "createdAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "seqType": "Sequelize.DATE"
+                },
+                "materiaId": {
+                    "primaryKey": true,
+                    "references": {
+                        "model": "Materia",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "turmaId": {
+                    "primaryKey": true,
+                    "references": {
+                        "model": "Turma",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
+                }
+            },
+            "indexes": []
         }
     },
-    "revision": 2
+    "revision": 1
 }

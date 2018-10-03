@@ -5,19 +5,82 @@ var Sequelize = require('sequelize')
 /**
  * Actions summary:
  *
+ * createTable "Curso", deps: []
+ * createTable "Materia", deps: []
  * createTable "Responsavel", deps: []
- * createTable "Alunos", deps: [Responsavel]
+ * createTable "Aluno", deps: [Responsavel]
+ * createTable "Turma", deps: [Curso]
+ * createTable "Matricula", deps: [Aluno, Turma]
+ * createTable "TurmaMateria", deps: [Materia, Turma]
  *
  **/
 
 var info = {
   'revision': 1,
   'name': 'db',
-  'created': '2018-10-02T20:05:28.078Z',
+  'created': '2018-10-03T12:45:07.212Z',
   'comment': ''
 }
 
 var migrationCommands = [{
+  fn: 'createTable',
+  params: [
+    'Curso',
+    {
+      'id': {
+        'type': Sequelize.INTEGER,
+        'autoIncrement': true,
+        'primaryKey': true,
+        'allowNull': false
+      },
+      'nome': {
+        'type': Sequelize.STRING,
+        'allowNull': false
+      },
+      'createdAt': {
+        'type': Sequelize.DATE,
+        'allowNull': false
+      },
+      'updatedAt': {
+        'type': Sequelize.DATE,
+        'allowNull': false
+      }
+    },
+    {}
+  ]
+},
+{
+  fn: 'createTable',
+  params: [
+    'Materia',
+    {
+      'id': {
+        'type': Sequelize.INTEGER,
+        'autoIncrement': true,
+        'primaryKey': true,
+        'allowNull': false
+      },
+      'nome': {
+        'type': Sequelize.STRING,
+        'allowNull': false
+      },
+      'agrupada': {
+        'type': Sequelize.BOOLEAN,
+        'defaultValue': false
+      },
+      'createdAt': {
+        'type': Sequelize.DATE,
+        'allowNull': false
+      },
+      'updatedAt': {
+        'type': Sequelize.DATE,
+        'allowNull': false
+      }
+    },
+    {}
+  ]
+},
+{
   fn: 'createTable',
   params: [
     'Responsavel',
@@ -51,7 +114,7 @@ var migrationCommands = [{
 {
   fn: 'createTable',
   params: [
-    'Alunos',
+    'Aluno',
     {
       'id': {
         'type': Sequelize.INTEGER,
@@ -124,6 +187,144 @@ var migrationCommands = [{
           'key': 'id'
         },
         'allowNull': true
+      }
+    },
+    {}
+  ]
+},
+{
+  fn: 'createTable',
+  params: [
+    'Turma',
+    {
+      'id': {
+        'type': Sequelize.INTEGER,
+        'autoIncrement': true,
+        'primaryKey': true,
+        'allowNull': false
+      },
+      'nome': {
+        'type': Sequelize.STRING,
+        'allowNull': false
+      },
+      'qtdeMaximaAlunos': {
+        'type': Sequelize.INTEGER,
+        'allowNull': false
+      },
+      'emailCoordenador': {
+        'type': Sequelize.STRING,
+        'validate': {
+          'isEmail': {
+            'msg': 'Por gentileza, insira um e-mail válido para o coordenador.'
+          }
+        },
+        'allowNull': true
+      },
+      'createdAt': {
+        'type': Sequelize.DATE,
+        'allowNull': false
+      },
+      'updatedAt': {
+        'type': Sequelize.DATE,
+        'allowNull': false
+      },
+      'CursoId': {
+        'type': Sequelize.INTEGER,
+        'onUpdate': 'CASCADE',
+        'onDelete': 'SET NULL',
+        'references': {
+          'model': 'Curso',
+          'key': 'id'
+        },
+        'allowNull': true
+      }
+    },
+    {}
+  ]
+},
+{
+  fn: 'createTable',
+  params: [
+    'Matricula',
+    {
+      'id': {
+        'type': Sequelize.INTEGER,
+        'autoIncrement': true,
+        'primaryKey': true,
+        'allowNull': false
+      },
+      'status': {
+        'type': Sequelize.ENUM('MATRICULADO', 'TRANCADO', 'DESISTENTE', 'TRANSFERIDO'),
+        'allowNull': false
+      },
+      'observacao': {
+        'type': Sequelize.STRING,
+        'allowNull': false
+      },
+      'createdAt': {
+        'type': Sequelize.DATE,
+        'allowNull': false
+      },
+      'updatedAt': {
+        'type': Sequelize.DATE,
+        'allowNull': false
+      },
+      'AlunoId': {
+        'type': Sequelize.INTEGER,
+        'onUpdate': 'CASCADE',
+        'onDelete': 'SET NULL',
+        'references': {
+          'model': 'Aluno',
+          'key': 'id'
+        },
+        'allowNull': true
+      },
+      'TurmaId': {
+        'type': Sequelize.INTEGER,
+        'onUpdate': 'CASCADE',
+        'onDelete': 'SET NULL',
+        'references': {
+          'model': 'Turma',
+          'key': 'id'
+        },
+        'allowNull': true
+      }
+    },
+    {}
+  ]
+},
+{
+  fn: 'createTable',
+  params: [
+    'TurmaMateria',
+    {
+      'createdAt': {
+        'type': Sequelize.DATE,
+        'allowNull': false
+      },
+      'updatedAt': {
+        'type': Sequelize.DATE,
+        'allowNull': false
+      },
+      'materiaId': {
+        'type': Sequelize.INTEGER,
+        'onUpdate': 'CASCADE',
+        'onDelete': 'CASCADE',
+        'references': {
+          'model': 'Materia',
+          'key': 'id'
+        },
+        'primaryKey': true
+      },
+      'turmaId': {
+        'type': Sequelize.INTEGER,
+        'onUpdate': 'CASCADE',
+        'onDelete': 'CASCADE',
+        'references': {
+          'model': 'Turma',
+          'key': 'id'
+        },
+        'primaryKey': true
       }
     },
     {}
