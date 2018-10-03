@@ -18,7 +18,7 @@ var Sequelize = require('sequelize')
 var info = {
   'revision': 1,
   'name': 'db',
-  'created': '2018-10-03T12:45:07.212Z',
+  'created': '2018-10-03T18:22:24.961Z',
   'comment': ''
 }
 
@@ -95,9 +95,18 @@ var migrationCommands = [{
         'type': Sequelize.STRING,
         'allowNull': false
       },
+      'email': {
+        'type': Sequelize.STRING,
+        'validate': {
+          'isEmail': {
+            'msg': 'Insira um e-mail válido'
+          }
+        },
+        'allowNull': false
+      },
       'trabalho': {
         'type': Sequelize.STRING,
-        'allowNull': false
+        'allowNull': true
       },
       'createdAt': {
         'type': Sequelize.DATE,
@@ -135,6 +144,7 @@ var migrationCommands = [{
         'validate': {
           'isEmail': true
         },
+        'unique': true,
         'allowNull': false
       },
       'senha': {

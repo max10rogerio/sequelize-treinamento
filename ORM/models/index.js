@@ -10,14 +10,11 @@ const env = process.env.NODE_ENV || 'development'
 const config = require(path.join(__dirname, '/../config/config.js'))[env]
 const db = {}
 
-console.log(config)
-
 // my configs sequelize
 config.logging = console.log
 config.define = {
   freezeTableName: true
 }
-console.log(config)
 
 let sequelize
 if (config.use_env_variable) {

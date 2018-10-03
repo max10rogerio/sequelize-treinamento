@@ -3,10 +3,10 @@ require('dotenv').config() // magic
 module.exports = {
   'development': {
     'database': 'sequelize',
-    'username': 'root',
+    'username': 'postgres',
     'password': '123456',
     'port': '5432',
-    'host': 'locahost',
+    'host': 'localhost',
     'dialect': 'postgres'
   },
 

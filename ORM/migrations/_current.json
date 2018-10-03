@@ -19,6 +19,7 @@
                 },
                 "email": {
                     "allowNull": false,
+                    "unique": true,
                     "validate": {
                         "isEmail": true
                     },
@@ -195,8 +196,17 @@
                     "allowNull": false,
                     "seqType": "Sequelize.STRING"
                 },
-                "trabalho": {
+                "email": {
                     "allowNull": false,
+                    "validate": {
+                        "isEmail": {
+                            "msg": "Insira um e-mail válido"
+                        }
+                    },
+                    "seqType": "Sequelize.STRING"
+                },
+                "trabalho": {
+                    "allowNull": true,
                     "seqType": "Sequelize.STRING"
                 },
                 "createdAt": {

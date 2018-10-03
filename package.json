@@ -16,10 +16,11 @@
     "sha256": "^0.2.0"
   },
   "scripts": {
-    "start": "nodemon",
+    "start": "nodemon ./bin/www",
     "create-migration": "node ./node_modules/sequelize-auto-migrations/bin/makemigration --name db --models-path ORM/models --migrations-path ORM/migrations",
     "execute-migration": "node ./node_modules/sequelize-auto-migrations/bin/runmigration --models-path ORM/models --migrations-path ORM/migrations",
     "execute-all-seeders": "sequelize db:seed:all",
+    "generate-environment": "yarn run create-migration && yarn run execute-migration && yarn run execute-all-seeders && yarn run start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -34,7 +35,7 @@
   },
   "homepage": "https://github.com/max10rogerio/sequelize-treinamento#readme",
   "devDependencies": {
-    "nodemon": "^1.18.4",
+    "nodemon": "1.16.1",
     "sequelize-auto-migrations": "https://github.com/max10rogerio/sequelize-auto-migrations/archive/master.tar.gz",
     "sequelize-cli": "^4.1.1"
   }

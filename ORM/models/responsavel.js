@@ -5,9 +5,23 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        isEmail: {
+          msg: 'Insira um e-mail válido'
+        },
+        isGmail: (value) => {
+          if (value.toLowerCase().indexOf('@gmail.com') === -1) {
+            throw new Error('Insira um email google')
+          }
+        }
+      }
+    },
     trabalho: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     }
   },
   {
