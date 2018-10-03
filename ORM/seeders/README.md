@@ -16,6 +16,9 @@ module.exports = {
   }
 }
 ```
+
+Para criar um seeder faça: **yarn sequelize seed:generate --name nome-do-seed**, ele criará um arquivo na pasta com o nome XXXXXXXXXXXX-nomedoseuseed.js.
+
 As funções up e down retornam uma promise.
 <br />
 O primeiro parametro **queryInterface** é um objeto que pode ser usado para modificar o banco (drop, delete, create, update).
