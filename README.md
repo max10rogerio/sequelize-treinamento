@@ -26,7 +26,7 @@ Neste projeto conterá exemplos e explicações de:
  - [Validators](./ORM/models/README.md#validators)
  - [Associations](./ORM/models/README.md#associations)
  - [Migrations](./ORM/migrations/README.md)
- - Seeders
+ - [Seeders](.ORM/seeders/README.md)
 
 Tudo apenas para entendimento da ferramenta **ORM**, para ver os detalhes mais específicos, **consulte a documentação**.
 
