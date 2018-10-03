@@ -60,12 +60,12 @@ module.exports = (sequelize, DataTypes) => {
 
         aluno.senha = sha256(aluno.senha)
       }
-    },
-    freezeTableName: true
+    }
   })
 
   Aluno.associate = function (models) {
     models.Aluno.belongsTo(models.Responsavel)
+    models.Aluno.hasMany(models.Matricula)
   }
 
   return Aluno

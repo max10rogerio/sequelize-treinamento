@@ -11,7 +11,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   },
   {
-    freezeTableName: true
   })
 
   Responsavel.associate = (models) => {

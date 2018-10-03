@@ -9,12 +9,12 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: false
     }
   }, {
-    freezeTableName: true
   })
 
   Materia.associate = (models) => {
     models.Materia.belongsToMany(models.Turma, {
-      through: 'TurmaMateria'
+      through: 'TurmaMateria',
+      foreignKey: 'materiaId'
     })
   }
 

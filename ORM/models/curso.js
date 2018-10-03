@@ -5,7 +5,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     }
   }, {
-    freezeTableName: true
   })
 
   Curso.associate = (models) => {

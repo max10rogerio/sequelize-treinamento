@@ -21,11 +21,11 @@ Neste projeto conterá exemplos e explicações de:
 
  - [Defaults do Sequelize](#defaults-do-sequelize)
  - [Configurações (básicas)](#configs-basicas)
- - [Pasta Configs](./ORM/config/README.md)
- - [Pasta Models](./ORM/models/README.md)
+ - [Configs](./ORM/config/README.md)
+ - [Models](./ORM/models/README.md)
  - [Validators](./ORM/models/README.md#validators)
  - [Associations](./ORM/models/README.md#associations)
- - Migrations
+ - [Migrations](./ORM/migrations/README.md)
  - Seeders
 
 Tudo apenas para entendimento da ferramenta **ORM**, para ver os detalhes mais específicos, **consulte a documentação**.

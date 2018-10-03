@@ -96,3 +96,79 @@ Para consultar a documentação [**CLIQUE AQUI**](http://docs.sequelizejs.com/ma
 
 
 ### Associations
+
+Para ler a documentação sobre as associoações [**CLIQUEAQUI**](http://docs.sequelizejs.com/manual/tutorial/associations.html#associations)
+
+Existem várias formas de fazer relacionamento no sequelize, aqui falarei usando o atributo associate.
+<br />
+Exemplo:
+```
+Aluno.associate = function (models) {
+  models.Aluno.belongsTo(models.Responsavel)
+}
+```
+O associate recebe um função onde o primeiro parametro são as models (não é necessário importá-las (neste caso)), e dentro da função você informa os relacionamentos. O atributo model irá conter todas as models do projeto.
+
+
+As chaves criadas pelo sequelize default, são camelCase e usa o nome da model + id.
+<br />
+A chave irá ficar no relaciomento maior (**N** ou **M**) ou caso deixe explicito **belongsTo** (pertence à).
+<br />
+Particulamente eu prefiro fazer o relaciomento explicito por fica mais fácil de visualizar e caso necessário dar manutenção. É possível mudar o nome da FK ou PK, ou a coluna que será gerada.
+
+No caso de relacionamentos **N:M** (belongsToMany), é gerada uma tabela nova.
+
+Vou utilizar o relacionamento entre **Responsavel** e **Aluno**
+
+#### **ONE-TO-ONE**
+
+```
+// model do aluno
+Aluno.associate = function (models) {
+  models.Aluno.belongsTo(models.Responsavel)
+}
+
+//model do responsavel
+Responsavel.associate = function (models) {
+  models.Responsavel.hasOne(models.Aluno)
+}
+```
+FK irá na model do Aluno com o nome Responsaveld
+
+#### **ONE-TO-MANY**
+
+```
+// model do aluno
+Aluno.associate = function (models) {
+  models.Aluno.belongsTo(models.Responsavel)
+}
+
+//model do responsavel
+Responsavel.associate = function (models) {
+  models.Responsavel.hasMany(models.Aluno)
+}
+```
+FK irá na model do Aluno com o nome Responsaveld
+
+### **MANY-TO-MANY**
+
+Relacionamentos **N:M** normalmente cria-se uma tabela ternária. No caso caso do sequelize essa tabela é criada atráves do atributo **through**.
+<br />
+O sequelize irá criar as colunas com a chave primária das models.
+<br />
+No exemplo abaixo será criado uma ligação atráves de **ResponsavelAluno**
+```
+// model do aluno
+Aluno.associate = function (models) {
+  models.Aluno.belongsToMany(models.Responsavel, {
+    through: 'ResponsavelAluno'
+  })
+}
+
+//model do responsavel
+Responsavel.associate = function (models) {
+  models.Responsavel.belongsToMany(models.Aluno, {
+    through: 'ResponsavelAluno'
+  })
+}
+```

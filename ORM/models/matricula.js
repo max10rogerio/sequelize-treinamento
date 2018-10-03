@@ -9,11 +9,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     }
   }, {
-    freezeTableName: true
   })
 
   Matricula.associate = (models) => {
-    models.Matricula.hasMany(models.Turma)
+    models.Matricula.belongsTo(models.Turma)
+    models.Matricula.belongsTo(models.Aluno)
   }
 
   return Matricula

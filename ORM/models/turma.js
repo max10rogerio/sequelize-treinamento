@@ -18,13 +18,14 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   }, {
-    freezeTableName: true
   })
 
   Turma.associate = (models) => {
     models.Turma.belongsTo(models.Curso)
+    models.Turma.hasMany(models.Matricula)
     models.Turma.belongsToMany(models.Materia, {
-      through: 'TurmaMateria'
+      through: 'TurmaMateria',
+      foreignKey: 'turmaId'
     })
   }
 
