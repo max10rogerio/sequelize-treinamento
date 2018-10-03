@@ -52,10 +52,51 @@ router.post('/:model/novo', (req, res) => {
     })
 })
 
-router.post('/aluno/novo', (req, res) => {
-  models.Aluno.create({
+router.put('/:model/alterar/:id', (req, res) => {
+  const body = req.body
+  const model = getModelByUrl(req.params.model)
 
+  model.update({
+    ...body,
+    updatedAt: sequelize.fn('NOW')
+  }, {
+    returning: true,
+    where: {
+      id: req.params.id
+    }
   })
+    .then(([ rowsUpdate, [updated] ]) => {
+      res.send(updated)
+    })
+    .catch((err) => {
+      console.log(err)
+      res.status(403).send(err)
+    })
+})
+
+router.delete('/:model/excluir/:id', (req, res) => {
+  const model = getModelByUrl(req.params.model)
+
+  model.destroy({
+    where: {
+      id: parseInt(req.params.id)
+    }
+  })
+    .then((data) => {
+      let msg = ''
+
+      if (parseInt(data) > 0) {
+        msg = `Registro ${Object.keys(model)} de  deletado com sucesso`
+      } else {
+        msg = `Nenhum registro de ${Object.keys(model)} foi deletado...`
+      }
+
+      res.status(200).send(msg)
+    })
+    .catch((err) => {
+      console.log(err)
+      res.status(403).send(err)
+    })
 })
 
 module.exports = router
