@@ -92,6 +92,8 @@ email: {
 ```
 Lembrando que pode ser utilizados vários validators em um único campo.
 
+**OBS:** Tive problemas em utilizar validator customizado, pois toda vez que rodava a criação da migration, ele gerava um novo arquivo de migration.
+
 Para consultar a documentação [**CLIQUE AQUI**](http://docs.sequelizejs.com/manual/tutorial/models-definition.html#validations)
 
 
