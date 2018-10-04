@@ -1,0 +1,362 @@
+{
+	"info": {
+		"_postman_id": "0d2a1ab8-73bb-442a-9944-c5db01224c02",
+		"name": "sequelize-treinamento",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Alterar",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nome",
+							"value": "Max Rogério",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/responsavel/alterar/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"responsavel",
+						"alterar",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Busca",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/aluno/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"aluno",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Novo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nome",
+							"value": "teste 2",
+							"type": "text"
+						},
+						{
+							"key": "trabalho",
+							"value": "teste 2",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "teste2@gmail.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/aluno/novo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"aluno",
+						"novo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Excluir",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/matricula/excluir/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"matricula",
+						"excluir",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar turma",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nome",
+							"value": "Turma maternal",
+							"type": "text"
+						},
+						{
+							"key": "qtde",
+							"value": "10",
+							"type": "text"
+						},
+						{
+							"key": "cursoId",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "materias",
+							"value": "[3]",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/criar-turma",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"criar-turma"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lista turma e materia",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/turma/8/materias",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"turma",
+						"8",
+						"materias"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Matricular Aluno",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "alunoId",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "turmaId",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "MATRICULADO",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/matricular-aluno",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"matricular-aluno"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remover matéria da turma",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "materias",
+							"value": "[3]",
+							"type": "text"
+						},
+						{
+							"key": "idTurma",
+							"value": "8",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/remover-materia",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"remover-materia"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Novo Aluno",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nome",
+							"value": "Max",
+							"type": "text"
+						},
+						{
+							"key": "dtNascimento",
+							"value": "01-01-1995",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "max@teste.com",
+							"type": "text"
+						},
+						{
+							"key": "senha",
+							"value": "123456",
+							"type": "text"
+						},
+						{
+							"key": "ResponsavelId",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/aluno/novo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"aluno",
+						"novo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Matriculas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:3000/matricula",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"matricula"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
