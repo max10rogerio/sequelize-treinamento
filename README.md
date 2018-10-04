@@ -27,7 +27,7 @@ Neste projeto conterá exemplos e explicações de:
  - [Associations](./ORM/models/README.md#associations)
  - [Migrations](./ORM/migrations/README.md)
  - [Seeders](.ORM/seeders/README.md)
- - [Utilizando a Estrutura montada](./routes/README.md)
+ - [Brincando um pouco](./routes/README.md)
 
 Tudo apenas para entendimento da ferramenta **ORM**, para ver os detalhes mais específicos, **consulte a documentação**.
 

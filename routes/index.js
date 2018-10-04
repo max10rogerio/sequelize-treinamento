@@ -24,11 +24,14 @@ router.get('/', function (req, res, next) {
 router.get('/:model/:id?', async (req, res) => {
   let result = ''
   const model = getModelByUrl(req.params.model)
-
-  if (req.params.id) {
-    result = await model.findById(req.params.id)
-  } else {
-    result = await model.findAll()
+  try {
+    if (req.params.id) {
+      result = await model.findById(req.params.id)
+    } else {
+      result = await model.findAll()
+    }
+  } catch (err) {
+    result = err
   }
 
   res.send(result)
@@ -86,9 +89,9 @@ router.delete('/:model/excluir/:id', (req, res) => {
       let msg = ''
 
       if (parseInt(data) > 0) {
-        msg = `Registro ${Object.keys(model)} de  deletado com sucesso`
+        msg = `Registro de ${req.params.model} deletado com sucesso`
       } else {
-        msg = `Nenhum registro de ${Object.keys(model)} foi deletado...`
+        msg = `Nenhum registro de ${req.params.model} foi deletado...`
       }
 
       res.status(200).send(msg)
@@ -97,6 +100,142 @@ router.delete('/:model/excluir/:id', (req, res) => {
       console.log(err)
       res.status(403).send(err)
     })
+})
+
+router.post('/criar-turma', async (req, res) => {
+  let result = ''
+  const { nome, qtde, cursoId, materias } = req.body
+  await models.Turma.create({
+    nome: nome,
+    qtdeMaximaAlunos: qtde,
+    createadAt: sequelize.fn('NOW'),
+    updatedAt: sequelize.fn('NOW'),
+    CursoId: cursoId
+  })
+    .then(async (turma) => {
+      await turma.setMaterias(JSON.parse(materias))
+        .then((data) => {
+          result = turma
+        })
+        .catch((err) => {
+          console.log(err)
+          result = err
+        })
+    })
+    .catch((err) => {
+      console.log(err)
+      result = err
+    })
+  res.send(result)
+})
+
+router.delete('/remover-materia', async (req, res) => {
+  var turma = await models.Turma.findById(req.body.idTurma)
+  let result = ''
+  turma.removeMateria(JSON.parse(req.body.materias))
+    .then((data) => {
+      console.log(data)
+      result = data
+    })
+    .catch((err) => {
+      console.log(err)
+      result = err
+    })
+  console.log(result)
+  res.send(parseInt(result) > 0 ? 'Registro(s) deletado com sucesso.' : 'Nenhum registro foi deletado')
+})
+
+router.get('/turma/:id/materias', (req, res) => {
+  try {
+    models.Turma.findAll({
+      where: {
+        id: req.params.id
+      },
+      include: [
+        {
+          model: models.Materia
+        }
+      ]
+    }).then((data) => res.send(data))
+  } catch (error) {
+    res.status(403).send(error)
+  }
+})
+
+router.get('/matricula/ver-aluno/:id', async (req, res) => {
+  let result = ''
+
+  try {
+    result = await models.Matricula
+      .findOne({
+        where: {
+          id: req.params.id
+        },
+        attributes: [
+          'observacao',
+          'status'
+        ],
+        include: [
+          {
+            model: models.Aluno,
+            attributes: [
+              'nome',
+              'email',
+              'dtNascimento'
+            ],
+            include: [
+              {
+                model: models.Responsavel,
+                attributes: [
+                  'nome',
+                  'trabalho'
+                ]
+              }
+            ]
+          },
+          {
+            model: models.Turma,
+            attributes: [
+              'nome'
+            ],
+            include: [
+              {
+                model: models.Curso
+              },
+              {
+                model: models.Materia
+              }
+            ]
+          }
+        ]
+      })
+  } catch (err) {
+    result = err
+  }
+
+  res.send(result)
+})
+
+router.post('/matricular-aluno', async (req, res) => {
+  const { turmaId, alunoId, observacao, status } = req.body
+  let result = ''
+
+  await models.Matricula.create({
+    TurmaId: turmaId,
+    AlunoId: alunoId,
+    observacao: observacao || 'Nenhuma',
+    status: status
+  })
+    .then((data) => {
+      console.log(data)
+      result = data
+    })
+    .catch((err) => {
+      console.log(err)
+      result = err
+    })
+
+  res.send(result)
 })
 
 module.exports = router

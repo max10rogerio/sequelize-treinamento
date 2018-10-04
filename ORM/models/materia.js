@@ -9,6 +9,10 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: false
     }
   }, {
+    name: {
+      singular: 'Materia',
+      plural: 'Materias'
+    }
   })
 
   Materia.associate = (models) => {
