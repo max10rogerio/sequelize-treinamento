@@ -92,7 +92,8 @@ module.exports = {
 }
 ```
 Lembre-se de renomear o arquivo config.json para config.js
-Também altere o começo do arquivo para:
+
+Dentro do arquivo model > index.js, altere o começo do arquivo para:
 ```
 'use strict'
 
